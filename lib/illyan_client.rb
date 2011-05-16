@@ -1,8 +1,15 @@
 require 'active_resource'
 
 module IllyanClient
+  mattr_reader :base_url
+  
   def self.base_url=(url)
+    @@base_url = url
     Person.site = "#{url}/admin"
+  end
+  
+  def self.token
+    Person.user
   end
   
   def self.token=(token)
