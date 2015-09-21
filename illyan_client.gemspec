@@ -9,8 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Nat Budin"]
   spec.email         = ["natbudin@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = %q{REST API client for Illyan}
   spec.homepage      = "https://github.com/nbudin/illyan_client"
   spec.license       = "MIT"
 
