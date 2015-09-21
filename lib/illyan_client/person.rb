@@ -3,6 +3,8 @@ require 'active_model'
 module IllyanClient
   class Person
     include ActiveModel::Model
+    include ActiveModel::Serializers::JSON
+    
     attr_accessor :id, :firstname, :lastname, :gender, :birthdate, :email, :admin
     
     def persisted?

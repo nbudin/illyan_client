@@ -11,24 +11,19 @@ module IllyanClient
     end
     
     def connection
-      @connection ||= Faraday.new(url: base_url) do |faraday|
-        faraday.request :basic_auth, token, ''
-        faraday.request :json
+      @connection ||= Faraday.new(url: base_url, headers: {'Accept' => 'application/json'}) do |conn|
+        conn.request :basic_auth, token, ''
+        conn.request :json
         
-        faraday.response :json
-        faraday.response :logger
+        conn.response :json
+        conn.response :logger
         
-        faraday.adapter Faraday.default_adapter
+        conn.adapter Faraday.default_adapter
       end
     end
     
-    def find_person(id)
-      response = connection.get "/admin/people/#{id}"
-      IllyanClient::Person.new(response['person'])
-    end
-    
     def create_person(person)
-      connection.post "/admin/people", person.serializable_hash
+      connection.post "/admin/people", { person: person.serializable_hash }
     end
   end
 end
