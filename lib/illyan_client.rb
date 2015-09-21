@@ -1,27 +1,23 @@
-require 'active_resource'
 require "illyan_client/version"
+require "illyan_client/client"
+require "illyan_client/person"
 
 module IllyanClient
-  mattr_reader :base_url
+  mattr_reader :base_url, :token
   
   def self.base_url=(url)
     @@base_url = url
-    Person.site = "#{url}/admin"
-  end
-  
-  def self.token
-    Person.user
   end
   
   def self.token=(token)
-    Person.user = token
+    @@token = token
   end
   
   def self.configure!
     yield IllyanClient
   end
   
-  class Person < ActiveResource::Base
-    self.format = :json
+  def self.default_client
+    @default_client ||= IllyanClient::Client.new
   end
 end
