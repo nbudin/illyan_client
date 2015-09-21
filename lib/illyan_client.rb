@@ -1,4 +1,5 @@
 require 'active_resource'
+require "illyan_client/version"
 
 module IllyanClient
   mattr_reader :base_url
